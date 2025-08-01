@@ -1,57 +1,33 @@
+<!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@6.0.0/dist/echarts.min.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/echarts@6.0.0/dist/echarts.min.js"></script>
+        <title>Savings Calculator</title>
+    </head>
 
-    <title>Savings Calculator</title>
-</head>
-<body>
-    <h1>Savings calculator</h1>
+    <body>
+        <h1>Savings Calculator</h1>
 
-    <form id="myData" onsubmit="onSubmit(); return false;">
-        <label for="amount-cash">Amount of cash</label><br>
-        <input id="amount-cash" type="text" value="10000"></input><br>
-        <label for="year-int-rate">Expected yearly interest rate</label><br>
-        <input id="year-int-rate" type="text" value="3"></input><br>
-        <label for="year-inf">Expected yearly inflation</label><br>
-        <input id="year-inf" type="text" value="4"></input><br>
-        <input type="submit"></input>
-    </form>
+        <form id="myData" onsubmit="onSubmit(); return false;">
+            <label for="amount-cash">Amount of cash</label><br>
+            <input id="amount-cash" type="text" value="10000"></input><br>
+            <label for="year-int-rate">Expected yearly interest rate (%)</label><br>
+            <input id="year-int-rate" type="text" value="3"></input><br>
+            <label for="year-inf">Expected yearly inflation (%)</label><br>
+            <input id="year-inf" type="text" value="4"></input><br>
+            <input type="submit"></input>
+        </form>
 
-    <div id="main" style="width: 600px;height:400px;"></div>
+        <div id="main" style="width: 600px;height:400px;"></div>
 
-    <script type="text/javascript">
-      // Initialize the echarts instance based on the prepared dom
-      var myChart = echarts.init(document.getElementById('main'));
+        <script type="text/javascript">
+            funkyChart();
+        </script>
 
-      // Specify the configuration items and data for the chart
-      var option = {
-        title: {
-          text: 'ECharts Getting Started Example'
-        },
-        tooltip: {},
-        legend: {
-          data: ['sales']
-        },
-        xAxis: {
-          data: ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks']
-        },
-        yAxis: {},
-        series: [
-          {
-            name: 'sales',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
-          }
-        ]
-      };
-
-      // Display the chart using the configuration items and data just specified.
-      myChart.setOption(option);
-    </script>
-
-</body>
+    </body>
 </html>
