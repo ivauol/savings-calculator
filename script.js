@@ -1,23 +1,20 @@
 function onSubmit() {
+    if (validateForm(document) === false) {
+        alert("Please fill in all values.")
+        return false;
+    };
     let amountCash = document.getElementById("amount-cash").value;
     let expectedYearlyInterestRate = document.getElementById("year-int-rate").value;
     let expectedYearlyInflation = document.getElementById("year-inf").value;
+    let vals = [amountCash, expectedYearlyInterestRate, expectedYearlyInflation];
+    console.log(vals);
 }
 
-
-/* function onSubmit(event) {
-    event.preventDefault;
-    console.log(event);
-    console.log('hello');
-    const form = event.target;
-    const formData = new FormData(form);
-    window.myFormData = formData;
-    let amountCash;
-    let expectedYearlyInterestRate;
-    let expectedYearlyInflation;
-    vals = [amountCash, expectedYearlyInterestRate, expectedYearlyInflation]
-    for (let keyValue of myFormData.entries())
-        console.log(keyValue);
-        vals[keyValue] = entries[keyValue];
-    return false;
-} */
+function validateForm(doc) {
+    let testArray = [doc.getElementById("amount-cash").value, doc.getElementById("year-int-rate").value, doc.getElementById("year-inf").value];
+    for (let i = 0; i < testArray.length; i = i+1) {
+        if (testArray[i] === '') {
+            return false;
+        }
+    }
+}
