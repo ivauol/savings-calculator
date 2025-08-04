@@ -20,13 +20,18 @@
             <input id="year-int-rate" type="text" value="3"></input><br>
             <label for="year-inf">Expected yearly inflation (%)</label><br>
             <input id="year-inf" type="text" value="4"></input><br>
+            <label for="num-years">Number of years</label><br>
+            <input id="num-years" type="text" value="5"></input><br>
             <input type="submit"></input>
         </form>
 
         <div id="main" style="width: 600px;height:400px;"></div>
 
+        <div id="not-main" style="width: 600px;height:400px;"></div>
+
         <script type="text/javascript">
             funkyChart();
+            makeYourOwnChart(numYearArray(5), calcYearlyValues(10000, 3, 4, 5));
         </script>
 
     </body>
