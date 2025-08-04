@@ -79,8 +79,6 @@ function makeYourOwnChart(xAxis, yAxis) {
     myChart.setOption(option);
 }
 
-makeYourOwnChart(numYearArray(5), calcYearlyValues(10000, 3, 4, 5));
-
 function funkyChart() {
     var myChart = echarts.init(document.getElementById('main'));
 
