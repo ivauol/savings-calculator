@@ -14,7 +14,7 @@
         <h1>Savings Calculator</h1>
 
         <form id="myData" onsubmit="onSubmit(); return false;">
-            <label for="amount-cash">Amount of cash</label><br>
+            <label for="amount-cash">Amount of cash (£)</label><br>
             <input id="amount-cash" type="text" value="10000"></input><br>
             <label for="year-int-rate">Expected yearly interest rate (%)</label><br>
             <input id="year-int-rate" type="text" value="3"></input><br>
@@ -25,14 +25,9 @@
             <input type="submit"></input>
         </form>
 
-        <div id="main" style="width: 600px;height:400px;"></div>
+        <h3>Generate graph below!</h3>
 
         <div id="not-main" style="width: 600px;height:400px;"></div>
-
-        <script type="text/javascript">
-            funkyChart();
-            makeYourOwnChart(numYearArray(5), calcYearlyValues(10000, 3, 4, 5));
-        </script>
 
     </body>
 </html>

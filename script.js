@@ -7,9 +7,10 @@ function onSubmit() {
     let expectedYearlyInterestRate = document.getElementById("year-int-rate").value;
     let expectedYearlyInflation = document.getElementById("year-inf").value;
     let numYears = document.getElementById("num-years").value;
-    let vals = [amountCash, expectedYearlyInterestRate, expectedYearlyInflation, numYears];
-    // forOneYear(vals[0], vals[1], vals[2], vals[3]);
-    calcYearlyValues(amountCash, expectedYearlyInterestRate, expectedYearlyInflation, numYears);
+    let myY = calcYearlyValues(amountCash, expectedYearlyInterestRate, expectedYearlyInflation, numYears);
+    let myX = numYearArray(numYears);
+    makeYourOwnChart(myX, myY);
+
 }
 
 function validateForm(doc) {
@@ -24,20 +25,11 @@ function validateForm(doc) {
 function numYearArray(x) {
     let toReturn = [];
     for (let i=1; i<=x; i=i+1) {
-        toReturn.push(i.toString());
+        toReturn.push(i);
     }
-    console.log(toReturn)
+    return toReturn;
 }
 
-function forOneYear(amountCash, expectedYearlyInterestRate, expectedYearlyInflation) {
-    let intRate = 1 + (expectedYearlyInterestRate / 100);
-    let infl = 1 - (expectedYearlyInflation / 100);
-    let oneYearChange = amountCash * intRate * infl;
-    console.log(oneYearChange);
-    return oneYearChange;
-}
-
-// take previous result and repeat calc * 80
 function calcYearlyValues(amountCash, expectedYearlyInterestRate, expectedYearlyInflation, numYears) {
     let intRate = 1 + (expectedYearlyInterestRate / 100);
     let infl = 1 - (expectedYearlyInflation / 100);
@@ -47,25 +39,34 @@ function calcYearlyValues(amountCash, expectedYearlyInterestRate, expectedYearly
         toPlot.push(Math.round(mostRecentYear));
         mostRecentYear = mostRecentYear * intRate * infl;
     }
-    console.log(toPlot);
     return toPlot;
 }
 
 function makeYourOwnChart(xAxis, yAxis) {
+
+    let minY = Math.min(...yAxis);
+    let maxY = Math.max(...yAxis);
+
     let myChart = echarts.init(document.getElementById("not-main"));
 
     let option = {
         title: {
-            text: "Title here"
+            text: "Savings over time"
         },
         tooltip: {},
         legend: {},
         xAxis: {
             type: "category",
-            data: xAxis
+            data: xAxis,
+            name: "Years",
+            nameLocation: "center"
         },
         yAxis: {
-            type: "value"
+            min: (minY-10),
+            max: (maxY+10),
+            type: "value",
+            name: "Amount of cash (£)",
+            nameLocation: "center"
         },
         series: [
             {
@@ -75,6 +76,7 @@ function makeYourOwnChart(xAxis, yAxis) {
             }
         ]
     }
+    console.log(xAxis);
 
     myChart.setOption(option);
 }
