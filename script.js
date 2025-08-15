@@ -24,20 +24,20 @@ function validateForm(doc) {
 
 function numYearArray(x) {
     let toReturn = [];
-    for (let i=1; i<=x; i=i+1) {
+    for (let i=0; i<=x; i=i+1) {
         toReturn.push(i);
     }
     return toReturn;
 }
 
 function calcYearlyValues(amountCash, expectedYearlyInterestRate, expectedYearlyInflation, numYears) {
-    let intRate = 1 + (expectedYearlyInterestRate / 100);
-    let infl = 1 - (expectedYearlyInflation / 100);
+    let multiplier = 1 + ((expectedYearlyInterestRate - expectedYearlyInflation) / 100);
     let toPlot = [];
-    let mostRecentYear = amountCash * intRate * infl;
+    toPlot.push(Math.round(amountCash));
+    let mostRecentYear = amountCash * multiplier;
     for (let i = 1; i <= numYears; i = i+1) {
         toPlot.push(Math.round(mostRecentYear));
-        mostRecentYear = mostRecentYear * intRate * infl;
+        mostRecentYear = mostRecentYear * multiplier;
     }
     return toPlot;
 }
@@ -76,39 +76,6 @@ function makeYourOwnChart(xAxis, yAxis) {
             }
         ]
     }
-    console.log(xAxis);
-
-    myChart.setOption(option);
-}
-
-function funkyChart() {
-    var myChart = echarts.init(document.getElementById('main'));
-
-    var option = {
-        title: {
-            text: 'Line Graph'
-        },
-        tooltip: {},
-        legend: {
-            data: ['sales']
-        },
-        xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [
-            {
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-                type: 'line',
-                smooth: true
-            }
-        ]
-    };
-
-    calcYearlyValues(10000,3,4,5);
 
     myChart.setOption(option);
 }
